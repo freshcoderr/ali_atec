@@ -1,0 +1,6 @@
+usage:
+
+sh offline_predict.py input output
+
+input: the offline testset
+output: your predict file

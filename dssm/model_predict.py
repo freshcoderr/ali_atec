@@ -200,14 +200,14 @@ def process(input_path, output_path):
     f_out2 = open('./test.csv', 'w')
     f_out3 = open('./testc.csv', 'w')
     f_in_index = []
-    # label = []
+    label = []
     for line in open(input_path):
         if not line:
             print "empty line ! "
             continue
         line = line.replace(' ', '')
         array = line.strip().split('\t')
-        # label.extend(array[3])
+        label.extend(array[3])
         res, s1l, s2l, simword, simwordl = proline(line, wdic2)
         resc = prolinec(line, chardict2)
         f_in_index.append(array[0])
@@ -322,13 +322,11 @@ def process(input_path, output_path):
     # ------------------model structure-------------------
     # attention = Attention(10)
     # model.load_weights('./modelsub_weights.h5')
-    model.load_weights('./modelsub_weights_10_fold_5k.h5')
+    model.load_weights('./modelsub_weights_10_fold.h5')
     # y_pred = model.predict([np.array(map(int, test_x1)), np.array((int, test_x2)), np.array((int, test_x3)), np.array((int, test_x1c)), np.array((int, test_x2c))])
     y_pred = model.predict([test_x1,test_x2, test_x3, test_x1c, test_x2c])
     # print "y_pred: \n", y_pred
-
-    # label = np.array(label).astype(int)
-
+    label = np.array(label).astype(int)
     # print labelm
     # for i in range(280,300,1):
     #     t = i/1000.0
@@ -336,7 +334,7 @@ def process(input_path, output_path):
     #     score(y_pred, label, t=t)
     #     print '\n'
 
-    # score(y_pred, label, t=0.3)
+    score(y_pred, label, t=0.3)
     # score(y_pred, label, t=0.286)
     # index = []
     # for _ in test_index:

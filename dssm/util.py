@@ -22,9 +22,10 @@ def score(y_pred,y_true,t = 0.5):
             fp += 1
 
     print tp,tn,fp,fn
-    print "acc:", tp*1.0/(tp+fp)
+    print "precision:", tp*1.0/(tp+fp)
     print "recall:", tp*1.0/(tp+fn)
     print "F1:", 2.0*tp/(2*tp+fp+fn)
+    return 2.0*tp/(2*tp+fp+fn)
 
 
 def bleu(c,r,length = 3, worddict = None):  # function to calc the simiarlity of two words
